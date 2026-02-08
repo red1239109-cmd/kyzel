@@ -1,4 +1,3 @@
-# main.py
 import logging
 from src.types.session import Session
 from src.types.events import HumanMsg
