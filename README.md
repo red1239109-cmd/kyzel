@@ -106,7 +106,23 @@ Note: all notebooks are stored using [Jupytext](https://github.com/mwouts/jupyte
 - **Quantized Phi-4 fine-tuning with Unsloth**
   - `nb/train` allows for low-data fine-tuning of Phi-4 on the collected data with **as little as 10-13 GB of VRAM** thanks to [Unsloth](https://unsloth.ai/).
      
-     [New] Refactored StructuredEnforcer to support batch processing and robust state management .
+## 🚀 Recent Architecture Overhaul
+
+### 1. Robust Type System & Safety (`src/types`)
+- **Enforced UUIDs:** `Session` and `SessionEvent` now strictly enforce unique IDs upon creation using factory methods.
+- **Immutable & Decoupled Events:** Refactored `EventBody` to use `TypeAlias` and decoupled `ExecutionOutput` from the runtime engine to prevent circular dependencies.
+- **Safety First:** Eliminated "mutable default argument" risks in dataclasses.
+
+### 2. Persistence Layer (`src/persist`)
+- **Reflection-based XML I/O:** Implemented a new `xml_io.py` that dynamically serializes/deserializes nested dataclasses.
+- **Type-Safe Parsing:** Solved nested object recursion issues and added strict type casting to maintain data integrity during storage.
+
+### 3. Data Pipeline for Fine-tuning (`src/export`)
+- **JSONL Export:** Added `src/export/jsonl.py` to convert sessions into training-ready datasets.
+- **Privacy/Conciseness Filter:** Implemented logic to optionally filter out `AssistantThought` (CoT) events for cleaner datasets.
+
+### 4. Core Logic (`StructuredEnforcer`)
+- **Batch Processing:** Refactored the enforcer to support batch operations and fixed critical state management bugs in constrained generation.
 
 
 ## Making data repurposable
