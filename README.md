@@ -105,7 +105,8 @@ Note: all notebooks are stored using [Jupytext](https://github.com/mwouts/jupyte
   - Once a few sessions have been collected, they can be **flattened into token streams** and **converted to a HuggingFace [`Dataset`](https://huggingface.co/docs/datasets/en/package_reference/main_classes#datasets.Dataset)**.
 - **Quantized Phi-4 fine-tuning with Unsloth**
   - `nb/train` allows for low-data fine-tuning of Phi-4 on the collected data with **as little as 10-13 GB of VRAM** thanks to [Unsloth](https://unsloth.ai/).
-     [New] Refactored StructuredEnforcer to support batch processing and robust state management (fixed the spaghetti code).
+     
+     [New] Refactored StructuredEnforcer to support batch processing and robust state management .
 
 
 ## Making data repurposable
